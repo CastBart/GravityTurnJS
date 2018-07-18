@@ -20,10 +20,18 @@ class Options
         div.id = divId;
         div.innerHTML = divId;
         div.classList.add("myButton");
+
         document.body.appendChild(div);
         //setting the postition of the div
         var d = document.getElementById(divId);
-        d.style.fontSize = "x-large";
+        var fontSize = (window.innerHeight / 18);
+        d.style.fontSize = fontSize + "px";
+
+        d.style.paddingTop = fontSize / 2 + "px";
+        d.style.paddingBottom = fontSize / 2 + "px";
+        d.style.paddingLeft = fontSize + "px";
+        d.style.paddingRight = fontSize + "px";
+
         var width = d.offsetWidth;
         var height = d.offsetHeight;
         d.style.position = "absolute";
