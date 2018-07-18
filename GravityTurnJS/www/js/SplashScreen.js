@@ -40,7 +40,7 @@ class SplashScreen
     draw(ctx)
     {
         let context2D = ctx;
-        context2D.fillStyle = "#000000";
+        context2D.fillStyle = "#42f4d1";
         this.textSize = window.innerWidth / 20;
         context2D.font = this.textSize.toString() + "px Aerial";
         this.string = this.message;

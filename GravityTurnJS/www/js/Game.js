@@ -27,6 +27,7 @@ class Game
         this.imgSlow = new Image(); //image element for the slow asset
         this.imgPlayer = new Image();
         this.imgHealth = new Image();
+        this.imgMainBackground = new Image();
         
 
         //screens
@@ -83,6 +84,7 @@ class Game
         d.style.paddingBottom = fontSize / 2 + "px";
         d.style.paddingLeft = fontSize + "px";
         d.style.paddingRight = fontSize + "px";
+        d.style.borderRadius = fontSize + "px";
 
         var width = d.offsetWidth;
         var height = d.offsetHeight;
@@ -120,6 +122,7 @@ class Game
         if (this.gameIsOver) {
 
             x.style.display = "block";
+            x.style.visibility = "visible";
         }
         else {
             x.style.display = "none";
@@ -202,7 +205,7 @@ class Game
         switch (this.currentGameScreen)
         {
             case 0: //MainMenu  
-                context2D.fillStyle = "#000000";
+                context2D.fillStyle = "#42f4d1";
                 this.textSize = window.innerWidth / 20;
                 context2D.font = this.textSize.toString() + "px Aerial";
                 this.string = "Highest Score: " + localStorage.highestScore;
@@ -232,7 +235,7 @@ class Game
                     }
                 }
 
-                context2D.fillStyle = "#000000";
+                //context2D.fillStyle = "#000000";
                 // context2D.font = "12px Arial";
                 this.textSize = window.innerHeight / 30;
                 context2D.font = this.textSize.toString() + "px Aerial";

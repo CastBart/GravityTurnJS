@@ -30,6 +30,7 @@ class GameOver
         d.style.paddingBottom = fontSize / 2 + "px";
         d.style.paddingLeft = fontSize + "px";
         d.style.paddingRight = fontSize + "px";
+        d.style.borderRadius = fontSize + "px";
 
         var width = d.offsetWidth;
         var height = d.offsetHeight;

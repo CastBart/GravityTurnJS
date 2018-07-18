@@ -31,6 +31,7 @@ class Options
         d.style.paddingBottom = fontSize / 2 + "px";
         d.style.paddingLeft = fontSize + "px";
         d.style.paddingRight = fontSize + "px";
+        d.style.borderRadius = fontSize + "px";
 
         var width = d.offsetWidth;
         var height = d.offsetHeight;
@@ -73,14 +74,18 @@ class Options
         //check if current game is mainmenu
         if (gameNs.game.currentGameScreen === 1) {
             x.style.display = "block";
+            x.style.visibility = "visible";
             if (gameNs.soundOn) {
                 mute.style.display = "block";
+                mute.style.visibility = "visible";
                 unmute.style.display = "none";
             }
             else if (!gameNs.soundOn)
             {
                 mute.style.display = "none";
+                
                 unmute.style.display = "block";
+                unmute.style.visibility = "visible";
             }
         }
         else {

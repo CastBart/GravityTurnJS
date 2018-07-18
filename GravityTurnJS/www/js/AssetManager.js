@@ -51,6 +51,8 @@ class AssetManager
         gameNs.game.imgPlayer.src = this.data["player"];
         gameNs.game.imgHealth.addEventListener("load", onLoad, false);
         gameNs.game.imgHealth.src = this.data["health"];
+        gameNs.game.imgMainBackground.addEventListener("load", onLoad, false);
+        gameNs.game.imgMainBackground.src = this.data["mainMenuBackground"];
 
        // this.dataLoaded = true;
     }

@@ -33,6 +33,7 @@ class MainMenu
         d.style.paddingBottom = fontSize / 2 + "px";
         d.style.paddingLeft = fontSize + "px";
         d.style.paddingRight = fontSize + "px";
+        d.style.borderRadius = fontSize + "px";
 
         var width = d.offsetWidth;
         var height = d.offsetHeight;
@@ -71,6 +72,7 @@ class MainMenu
         if (gameNs.game.currentGameScreen === 0) {
 
             x.style.display = "block";
+            x.style.visibility = "visible";
         }
         else {
             x.style.display = "none";
