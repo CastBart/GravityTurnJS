@@ -27,6 +27,7 @@ class Game
         this.imgSlow = new Image(); //image element for the slow asset
         this.imgPlayer = new Image();
         this.imgHealth = new Image();
+        
 
         //screens
         this.mainMenu = new MainMenu();
@@ -37,9 +38,6 @@ class Game
         this.createDiv("Restart", window.innerWidth / 2, window.innerHeight/ 4);
         this.createDiv("Main Menu", window.innerWidth / 2, window.innerHeight / 2);
        
-        
-
-      
     }
 
     initialize() {
@@ -382,7 +380,7 @@ class Game
                 break;
             case 5://SplashScreen
                 this.splashScreen.update();
-                if (gameNs.counter >= 3)
+                if (gameNs.counter >= gameNs.TOTAL_ASSETS)
                 {
                     if (!this.assetsLoaded)
                     {

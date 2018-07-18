@@ -2,5 +2,6 @@
 	"asteroid": "img/animation_asteroids.png",
 	"slow": "img/slowGreen.png",
   "player": "img/SpaceShip.jpg",
-  "health":  "img/life.png"
+  "health": "img/life.png",
+  "mainMenuBackground":  "img/mainBackground"
 }
