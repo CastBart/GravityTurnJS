@@ -13,7 +13,7 @@ class Asteroid
             startY: Math.random() * (window.innerHeight - (window.innerHeight / 5.142857142857143)),
             startX: window.innerWidth + (window.innerHeight / 5.142857142857143),
             image: gameNs.game.img
-        }, 40, 70, 70, true);
+        }, 40, 70, 70, true,16);
       
         this.speed = speed;
        

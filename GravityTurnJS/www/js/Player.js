@@ -34,7 +34,7 @@ class Player
             startY: this.y,
             startX: this.x,
             image: gameNs.game.imgPlayer
-        }, 40, 80, 40, false);
+        }, 40, 80, 40, false,0);
         
     }
 

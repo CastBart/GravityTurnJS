@@ -18,16 +18,20 @@ class Game
         this.currentGameScreen = 5;
         this.canvas;
         this.assetsLoaded = false;
-       
-        this.img = new Image();   // Create new img element for the asteroid animation
         this.imgLoaded = false;
         this.imgSlowLoaded = false;
 
         //images
+        this.img = new Image();   // Create new img element for the asteroid animation
         this.imgSlow = new Image(); //image element for the slow asset
         this.imgPlayer = new Image();
         this.imgHealth = new Image();
         this.imgMainBackground = new Image();
+        this.imgTapping = new Image();
+
+        //Tapping Sprite
+        this.tapSprite;
+
         
 
         //screens
@@ -61,6 +65,15 @@ class Game
         this.blinkTimer = 0;
         this.blinkingTimes = 0;
         this.drawPlayer = true;
+
+        //Creating tapping animation
+        this.tapSprite = new Sprite(gameNs.game.canvas.ctx, {
+            width: 1286,
+            height: 100,
+            startY: window.innerHeight / 2,
+            startX: window.innerWidth/2,
+            image: gameNs.game.imgTapping
+        }, 40, 71.44444444444444, 100, true,18);
     }
     /**
      * 
@@ -217,7 +230,7 @@ class Game
             case 1://Options
                 break;
             case 2://Playing
-
+                this.tapSprite.draw(context2D);
                 if (this.drawPlayer) {
                     this.player.draw(context2D);
                 }
@@ -302,6 +315,7 @@ class Game
                
                 break;
             case 2://PLaying
+                this.tapSprite.update();
                 this.blink3times();
                 this.player.applyGravity(gameNs.gravity);
                 if (this.bonusList.length > 0) {

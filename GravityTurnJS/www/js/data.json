@@ -1,7 +1,8 @@
 {
-	"asteroid": "img/animation_asteroids.png",
-	"slow": "img/slowGreen.png",
+  "asteroid": "img/animation_asteroids.png",
+  "slow": "img/slowGreen.png",
   "player": "img/SpaceShip.png",
   "health": "img/life.png",
-  "mainMenuBackground":  "img/mainBackground"
+  "mainMenuBackground": "img/mainBackground",
+  "tapping": "img/Clicking.png"
 }

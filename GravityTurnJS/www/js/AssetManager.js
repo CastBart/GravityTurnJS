@@ -53,6 +53,8 @@ class AssetManager
         gameNs.game.imgHealth.src = this.data["health"];
         gameNs.game.imgMainBackground.addEventListener("load", onLoad, false);
         gameNs.game.imgMainBackground.src = this.data["mainMenuBackground"];
+        gameNs.game.imgTapping.addEventListener("load", onLoad, false);
+        gameNs.game.imgTapping.src = this.data["tapping"];
 
        // this.dataLoaded = true;
     }

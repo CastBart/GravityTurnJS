@@ -17,8 +17,9 @@ class Sprite
      * @param {any} imageOptions contains image width, height, start y position
      * @param {any} fps frames per second
      */
-    constructor(context, imageOptions, fps, sizeX,sizeY,animate)
+    constructor(context, imageOptions, fps, sizeX,sizeY,animate,frames)
     {
+
         this.imageOptions = imageOptions;
         this.width = imageOptions.width;
         this.height = imageOptions.height;
@@ -26,10 +27,10 @@ class Sprite
         this.startY = imageOptions.startY;
         this.startX = imageOptions.startX;
         this.ctx = context;
-        this.frameIndex = 16;
+        this.frameIndex = frames;
         this.tickCount = 0;
         this.ticksPerFrame = 100 / fps;
-        this.numberOfFrames = 16;
+        this.numberOfFrames = frames;
         this.sizeX = sizeX;
         this.sizeY = sizeY
         this.animate = animate;
@@ -51,7 +52,7 @@ class Sprite
             this.frameIndex--;
             if (this.frameIndex <= 0)
             {
-                this.frameIndex = 15;
+                this.frameIndex = this.numberOfFrames-1;
             }
         }
     }
@@ -63,8 +64,6 @@ class Sprite
     draw(ctx)
     {
         if (this.animate) {
-
-
             ctx.drawImage(
                 this.image,
                 this.frameIndex * this.sizeX,
@@ -73,8 +72,8 @@ class Sprite
                 this.sizeY,
                 this.startX,
                 this.startY,
-                this.sizeX * ((window.innerWidth / 40) / 16),
-                this.sizeY * ((window.innerWidth / 40) / 16));
+                this.sizeX * ((window.innerWidth / 40) / this.numberOfFrames),
+                this.sizeY * ((window.innerWidth / 40) / this.numberOfFrames));
         }
         else
         {

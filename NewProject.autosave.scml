@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r9">
+    <folder id="0" name="GravityTurnJS/www/img">
+        <file id="0" name="GravityTurnJS/www/img/finger.png" width="620" height="330" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="GravityTurnJS/www/img/Circle.png" width="302" height="293" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="FingerTap">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="1" time="198">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="2" time="199">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="3" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="finger">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="0.003221" y="2.580492"/>
+                </key>
+                <key id="1" spin="0">
+                    <object folder="0" file="0" x="-308" y="162"/>
+                </key>
+                <key id="2" time="198" spin="0">
+                    <object folder="0" file="0" x="-230.999195" y="122.145123" pivot_x="0" pivot_y="1" scale_x="0.75" scale_y="0.75"/>
+                </key>
+                <key id="3" time="198" spin="0">
+                    <object folder="0" file="0" x="0.003221" y="2.580492" pivot_x="0.496779" pivot_y="0.516911" scale_x="0.75" scale_y="0.75"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Circle">
+                <key id="0" time="199" spin="0">
+                    <object folder="0" file="1" x="-30.48365" y="81.21722" pivot_x="0.503129" pivot_y="0.503556" scale_x="0.5" scale_y="0.25"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
