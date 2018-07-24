@@ -27,8 +27,8 @@ function main()
     gameNs.game = m_game;
     gameNs.soundOn = true;
     gameNs.gravity = window.innerHeight / 90;
-    gameNs.counter = 0;
-    gameNs.TOTAL_ASSETS = 4;
+    gameNs.counter = 1;
+    gameNs.TOTAL_ASSETS = 6;
 	if(localStorage.highestScore === undefined)
 	{
 		localStorage.highestScore = 0;

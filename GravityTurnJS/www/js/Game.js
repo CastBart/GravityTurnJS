@@ -20,6 +20,8 @@ class Game
         this.assetsLoaded = false;
         this.imgLoaded = false;
         this.imgSlowLoaded = false;
+        this.begin;
+        this.clickCount = 0;
 
         //images
         this.img = new Image();   // Create new img element for the asteroid animation
@@ -46,6 +48,8 @@ class Game
     }
 
     initialize() {
+        this.begin = false;
+        this.clickCount = 0;
         this.tickCount = 0;
         this.ticksPerFrame = 100 / 30;
         this.singleFrame = 0;
@@ -159,10 +163,18 @@ class Game
 
     onTouchStart(e)
     {
-        if (gameNs.game.currentGameScreen === 2)
+        if (gameNs.game.currentGameScreen === 2 && !gameNs.game.begin)
         {
-            gameNs.gravity = -gameNs.gravity;
+            gameNs.game.clickCount++;
+            if (gameNs.game.clickCount === 3)
+            {
+                gameNs.game.begin = true;
+            }
         }
+        else {
+            gameNs.gravity = -gameNs.gravity 
+        }
+        
     }
 
 
@@ -230,7 +242,9 @@ class Game
             case 1://Options
                 break;
             case 2://Playing
-                this.tapSprite.draw(context2D);
+                if (!this.begin) {
+                    this.tapSprite.draw(context2D);
+                }
                 if (this.drawPlayer) {
                     this.player.draw(context2D);
                 }
@@ -309,93 +323,89 @@ class Game
 
         switch (this.currentGameScreen) {
             case 0: //MainMenu
-                
+
                 break;
             case 1://Options
-               
+
                 break;
             case 2://PLaying
-                this.tapSprite.update();
-                this.blink3times();
-                this.player.applyGravity(gameNs.gravity);
-                if (this.bonusList.length > 0) {
-                    this.bonusList[0].update(this.asteroidSpeed);
+                if (!this.begin) {
+                    this.tapSprite.update();
                 }
-                for (var i = 0; i < this.asteroidList.length; i++)
-                {
-                    this.asteroidList[i].update(this.asteroidSpeed);
-                }
-
-                //player collisions with asteroids
-                for (var i = 0; i < this.asteroidList.length; i++)
-                {
-                    if (this.collisionCircleRect(this.asteroidList[i].circle, this.player.rect) && !this.gameIsOver && !this.blinking)
-                    {
-                        if (this.lives > 0) {
-                            this.lives--;
-                            this.blinking = true;
-                            this.blinkTimer = 0;
-                            this.blinkingTimes = 0;
-                           
-                        }
-                        else {
-                            //--------------------
-                            // Do Particle Effect
-                            //--------------------
-                            for (var i = 0; i < 40; i++) {
-                                this.particleList.push(new Particle(this.player.x, this.player.y, 5, 5, "#4286f4"));
-                            }
-                            if (this.score > gameNs.game.highScore) {
-                                localStorage.highestScore = this.score;
-                            }
-                            
-                            this.gameOver();
-                        }
+                else {
+                    this.blink3times();
+                    this.player.applyGravity(gameNs.gravity);
+                    if (this.bonusList.length > 0) {
+                        this.bonusList[0].update(this.asteroidSpeed);
                     }
-                }
-                if (this.bonusList.length > 0) {
-                    if (this.collisionCircleRect(this.bonusList[0].circle, this.player.rect)) {
-                        this.bonusList[0].applyEffect();
-                        this.bonusList.pop();
-                        this.tickCount = 0;
-                        this.singleFrame = 0;
-                    }
-                }
-                if (this.particleList.length > 0)
-                {
-                    for (var i = 0; i < this.particleList.length; i++)
-                    {
-                        this.particleList[i].update();
+                    for (var i = 0; i < this.asteroidList.length; i++) {
+                        this.asteroidList[i].update(this.asteroidSpeed);
                     }
 
-                    this.deleteParticles();
-                }
-                if (this.bonusList.length <= 0)
-                {
-                    this.tickCount += 1;
-                    if (this.tickCount > this.ticksPerFrame) {
-                        this.tickCount = 0;
-                        this.singleFrame++;
-                        if (this.singleFrame >= 200)
-                        {
-                            this.max = 2;
-                            this.min = 1;
-                            this.randomNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+                    //player collisions with asteroids
+                    for (var i = 0; i < this.asteroidList.length; i++) {
+                        if (this.collisionCircleRect(this.asteroidList[i].circle, this.player.rect) && !this.gameIsOver && !this.blinking) {
+                            if (this.lives > 0) {
+                                this.lives--;
+                                this.blinking = true;
+                                this.blinkTimer = 0;
+                                this.blinkingTimes = 0;
 
-                            if (this.randomNum === 1) {
-                                this.bonusList.push(new Bonus(this.asteroidSpeed, "Health"));
                             }
-                            else if (this.randomNum === 2) {
-                                this.bonusList.push(new Bonus(this.asteroidSpeed, "Slow"));
+                            else {
+                                //--------------------
+                                // Do Particle Effect
+                                //--------------------
+                                for (var i = 0; i < 40; i++) {
+                                    this.particleList.push(new Particle(this.player.x, this.player.y, 5, 5, "#4286f4"));
+                                }
+                                if (this.score > gameNs.game.highScore) {
+                                    localStorage.highestScore = this.score;
+                                }
+
+                                this.gameOver();
                             }
                         }
                     }
+                    if (this.bonusList.length > 0) {
+                        if (this.collisionCircleRect(this.bonusList[0].circle, this.player.rect)) {
+                            this.bonusList[0].applyEffect();
+                            this.bonusList.pop();
+                            this.tickCount = 0;
+                            this.singleFrame = 0;
+                        }
+                    }
+                    if (this.particleList.length > 0) {
+                        for (var i = 0; i < this.particleList.length; i++) {
+                            this.particleList[i].update();
+                        }
+
+                        this.deleteParticles();
+                    }
+                    if (this.bonusList.length <= 0) {
+                        this.tickCount += 1;
+                        if (this.tickCount > this.ticksPerFrame) {
+                            this.tickCount = 0;
+                            this.singleFrame++;
+                            if (this.singleFrame >= 200) {
+                                this.max = 2;
+                                this.min = 1;
+                                this.randomNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+
+                                if (this.randomNum === 1) {
+                                    this.bonusList.push(new Bonus(this.asteroidSpeed, "Health"));
+                                }
+                                else if (this.randomNum === 2) {
+                                    this.bonusList.push(new Bonus(this.asteroidSpeed, "Slow"));
+                                }
+                            }
+                        }
+                    }
+
+                    this.spawnNewAsteroid();
+                    this.gameSceenCollision();
+                    this.deleteAsteroid();
                 }
-               
-                this.spawnNewAsteroid();
-                this.gameSceenCollision();
-                this.deleteAsteroid();
-                
                
                 break;
             case 3://Credtis
